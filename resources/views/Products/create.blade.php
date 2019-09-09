@@ -19,40 +19,9 @@
 	<div class="form-group">
 	<label for="status"> Estado </label>
 	<select name="status">
-		<option value="progress" selected>Em curso</option>
-		<option value="over">Terminado</option>
+		<option value="Em curso" selected>Em curso</option>
+		<option value="Terminado">Terminado</option>
 	</select>
-</div>
-	<br>
-
-	<h2>Ponto de dados</h2>
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Nome</th>
-				<th>Tipo de Dados</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-			<td>Nome</td>
-			<td>Texto</td>
-		</tr>
-		<tr>
-			<td>Preço</td>
-			<td>Número</td>
-		</tr>
-
-		</tbody>
-	</table>
-
-
-
-
-
-
-
-
 
 
 <br>	

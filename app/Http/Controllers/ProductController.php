@@ -45,8 +45,9 @@ class ProductController extends Controller
 
         $product->save();
 
-        return redirect()->route('products.index');
-    }
+       return redirect()->route('products.show', ['product'=>$product]);
+
+   }
 
     /**
      * Display the specified resource.
@@ -58,6 +59,11 @@ class ProductController extends Controller
     {
         return view ('products.show')->with('product', $product);
     }
+
+    /*function show ($id) {
+        $product = Product::where('id', '=', $id)->get()[0];
+        return view (product)->with('product', $product);
+    }*/
 
     /**
      * Show the form for editing the specified resource.
@@ -79,7 +85,11 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $product->fill($request->all());
+
+        $product->save();
+
+        return redirect()->route('products.index',['product'=>$product]); 
     }
 
     /**
@@ -90,6 +100,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return redirect()->route('products.index');
     }
 }

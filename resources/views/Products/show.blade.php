@@ -1,27 +1,40 @@
 @extends ('layouts.app')
+@section ('content')
+
 <div class="container">
-	<h1> Novo Produto </h1>
-	<form method="POST" action="{{route('products.store')}}">
+	<h1> Editar Produto </h1>
+	<form method="POST">
+		@method('PUT')
 		@csrf()
 		<div class="form-group">
 			<label for="name">Nome do Produto</label>
 			<input type="text" name="name"
-				   id="name" class="form-control">
+				   id="name" value="{{$product['name']}}" class="form-control">
 		</div>
 		<div class="form-group">
 			<label for="notes">Notas</label>
 			<textarea name="notes"
-				   id="notes" class="form-control"></textarea>
+				   id="notes" class="form-control">{{$product['notes']}}</textarea>
 		</div>
 
 	<div class="form-group">
 	<label for="status"> Estado </label>
 	<select name="status">
-		<option value="progress" selected>Em curso</option>
-		<option value="over">Terminado</option>
+		<option value="Em curso" selected>Em curso</option>
+		<option value="Terminado">Terminado</option>
 	</select>
-</div>
 	<br>
+</div>
+
+	<button type="submit" class="btn btn-info">Guardar</button>
+
+
+</form>
+
+<br>
+<br>
+
+<div class="container">
 
 	<h2>Ponto de dados</h2>
 	<table class="table">
@@ -40,8 +53,30 @@
 			<td>Preço</td>
 			<td>Número</td>
 		</tr>
-
+		@foreach($product->datas as $data)
+		<tr>
+			<td>{{$data ['name']}}</td>
+			<td>{{$data ['type']}}</td>
+			<td>
+					<form method="POST" 
+						  action="">
+						@method('DELETE')
+						@csrf()
+						<button type="submit" 
+								onclick="return confirm('Tem a certeza que pretende eliminar este ponto?')"
+								class="btn btn-outline-info btn-sm" >Eliminar</button>
+					</form>
+			</td>
+		</tr>
+@endforeach
 		</tbody>
 	</table>
 
+	<a href="{{route('data.create', $product)}}" class="btn btn-info">Adicionar Ponto</a>
+</div>
 
+
+</div>
+
+
+@endsection

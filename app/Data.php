@@ -13,6 +13,8 @@ class Data extends Model
 
    ];
 
+   	protected $table = "datas";
+
      public function product(){
     	return $this->belongsTo('App\Product');
     }

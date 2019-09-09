@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Data;
-use App\Product;
+use App\User;
 use Illuminate\Http\Request;
 
-class DataController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,22 +14,21 @@ class DataController extends Controller
      */
     public function index()
     {
-       
-       }
+        $users = User::paginate(10);
+
+        return view('users.index')->with('users', $users);
+    }
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
-
+    public function create()
     {
-        $product = Product::find($id);
-         $datas = Data::all();
-        return view('data.create')->with('datas',$datas)->with('product', $product);
+        $users = User::all();
+        return view('users.create')->with('users',$users);
     }
-    
 
     /**
      * Store a newly created resource in storage.
@@ -38,38 +36,34 @@ class DataController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
-        
-        $product = Product::find($id);
-        $data = new Data();
+        $user = new User();
+        $user->fill($request->all());
 
-        $data->fill($request->all());
-        $data->product_id = $product->id;
+        $user->save();
 
-        $data->save();
-
-       return redirect()->route('products.show', $product);
+       return redirect()->route('users.show', ['user'=>$user]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Data  $data
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(Data $data)
+    public function show(User $user)
     {
-        
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Data  $data
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(Data $data)
+    public function edit(User $user)
     {
         //
     }
@@ -78,10 +72,10 @@ class DataController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Data  $data
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Data $data)
+    public function update(Request $request, User $user)
     {
         //
     }
@@ -89,12 +83,11 @@ class DataController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Data  $data
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Data $data)
+    public function destroy(User $user)
     {
-       $data->delete();
-        return redirect()->route('products.index');
+        //
     }
 }
