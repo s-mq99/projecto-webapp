@@ -3,7 +3,7 @@
 
 <div class="container">
 	<h1> Novo Utilizador </h1>
-	<form method="POST" action="{{route('users.store')}}">
+	<form method="POST" action="{{route('users.store')}}" enctype="multipart/form-data">
 		@csrf()
 		<div class="form-group">
 			<label for="name">Nome</label>
@@ -21,14 +21,28 @@
 				   id="password" class="form-control">
 		</div>
 
+      	<div class="custom-file">
+         	 <input type="file" class="custom-file-input" id="photo" name="photo">
+          	<label class="custom-file-label" for="photo">Inserir foto de perfil</label>
+      	</div>
 
-	<div class="form-group">
+      		<br><br>
+
+    @if( auth()->user() && auth()->user()->admin == 1 ) 
+	
 	<label for="status"> Estado </label>
 	<select name="status">
-		<option value="Activo" selected>Activo</option>
+		<option value="Activo">Activo</option>
 		<option value="Inactivo">Inactivo</option>
 	</select>
-
+	
+	
+	<label for="admin"> Administrador </label>
+	<select name="admin">
+		<option value="1">Sim</option>
+		<option value="0">Não</option>
+	</select>
+	@endif
 <br>	
 <button type="submit" class="btn btn-primary">Guardar</button>
 </form>

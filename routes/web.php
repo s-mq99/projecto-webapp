@@ -20,12 +20,16 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('products', 'ProductController')->middleware('auth');
-Route::resource('users', 'UserController')->middleware('auth');
+Route::resource('users', 'UserController')->middleware(['auth','admin']);
+
+Route::get('users/create', 'UserController@create')->name('users.create');
+Route::post('users', 'UserController@store')->name('users.store');
+
+Route::post('/user/{id}/photos','UserController@store_image')->name('photo.store');
+Route::get('user/{id}', 'UserController@show');
 
 Route::get('/products/{id}/data', 'DataController@create')->name('data.create');
 Route::post('/products/{id}/data', 'DataController@store')->name('data.store');
-
-Route::get('/users', 'UserController@index')->name('user')->middleware(['auth','admin']);
 
 Route::get('/users/{id}/data', 'DataController@create')->name('data.create');
 Route::post('/products/{id}/data', 'DataController@store')->name('data.store');

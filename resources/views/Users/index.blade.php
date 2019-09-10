@@ -23,25 +23,42 @@
 		<tbody>
 			@foreach($users as $user)
 			<tr>
-				<td>{{ $user['photo'] }}
+				<td>
 
-				<?php if(!empty($user["photo"])):?>
-					<img class="photoUser" src='<?=$user["photo"];?>'
-					alt="Foto de Utilizador">
+				@if(!empty($user["photo"]))
+					<img class="photoUser" src="{{ asset('storage/users/' . $user['photo']) }}"
+					alt="Foto de Utilizador"
+					width="100px" height="100px">
 
-					<?php else: ?>
+				@else
 					<img class="photoUser"
 					src="photos/user.png"
 					alt="Foto de Utilizador"
 					width="100px" height="100px">
 
-			<?php endif; ?></td>
+				@endif
 
 				<td>{{ $user['name'] }}</td>
 				<td>{{ $user['email'] }}</td>
 				<td>{{ $user['password'] }}</td>
 				<td>{{ $user['status'] }}</td>
-				<td>{{ $user['admin'] }}</td>	
+				<td>{{ $user['admin'] }}</td>
+				<td>
+					<form method="POST" 
+						  action="{{route('users.destroy',$user)}}">
+						@method('DELETE')
+						@csrf()
+						<button type="submit" 
+								onclick="return confirm('Tem a certeza que pretende eliminar este utilizador?')"
+								class="btn btn-outline-info btn-sm" >Eliminar</button>
+					</form>
+				</td>
+
+				<td>
+					<a href="{{route('users.show', $user)}}" class="btn btn-outline-info btn-sm" >Editar</a>
+				</td>
+
+
 			</tr>
 			@endforeach
 		</tbody>

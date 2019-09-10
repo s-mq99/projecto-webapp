@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use Illuminate\Http\Request;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 
 class ProductController extends Controller
 {
@@ -102,5 +104,19 @@ class ProductController extends Controller
     {
         $product->delete();
         return redirect()->route('products.index');
+
+    }
+
+
+    public function getSearchResult(): SearchResult
+    {
+
+        $url = route('products.index', $this->id);
+
+        return new SearchResult(
+            $this,
+            $this->name,
+            $url
+         );
     }
 }

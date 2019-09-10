@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -15,9 +17,9 @@ class UserController extends Controller
     public function index()
     {
         $users = User::paginate(10);
-
         return view('users.index')->with('users', $users);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -40,10 +42,16 @@ class UserController extends Controller
     {
         $user = new User();
         $user->fill($request->all());
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+
+        $user->photo = $user->id . "_" . Carbon::now()->timestamp . "." . $request->file('photo')->getClientOriginalExtension();
+        $path = $request->file('photo')->storeAs('users', $user->photo, 'public');
 
         $user->save();
 
-       return redirect()->route('users.show', ['user'=>$user]);
+       return redirect()->route('users.index');
     }
 
     /**
@@ -52,9 +60,12 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($id)
+
     {
-        //
+
+        $user = User::find($id);
+       return view('users.show')->with('user',$user); 
     }
 
     /**
@@ -77,7 +88,13 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $user->fill($request->all());
+
+        $user->save();
+
+
+
+        return redirect()->route('users.index',['user'=>$user]); 
     }
 
     /**
@@ -88,6 +105,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return redirect()->route('users.index');
     }
 }
