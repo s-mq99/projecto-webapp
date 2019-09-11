@@ -20,6 +20,7 @@ class ProductController extends Controller
         $products = Product::paginate(10);
 
         return view('products.index')->with('products',$products);
+
     
     }
 

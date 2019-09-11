@@ -43,6 +43,11 @@
 				<td>{{ $user['password'] }}</td>
 				<td>{{ $user['status'] }}</td>
 				<td>{{ $user['admin'] }}</td>
+				
+				<td>
+					<a href="{{route('users.show', $user)}}" class="btn btn-outline-info btn-sm" >Editar</a>
+				</td>
+
 				<td>
 					<form method="POST" 
 						  action="{{route('users.destroy',$user)}}">
@@ -52,10 +57,6 @@
 								onclick="return confirm('Tem a certeza que pretende eliminar este utilizador?')"
 								class="btn btn-outline-info btn-sm" >Eliminar</button>
 					</form>
-				</td>
-
-				<td>
-					<a href="{{route('users.show', $user)}}" class="btn btn-outline-info btn-sm" >Editar</a>
 				</td>
 
 
