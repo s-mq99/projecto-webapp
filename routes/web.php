@@ -38,6 +38,9 @@
 	Route::get('/products/{product}/options', 'OptionController@create')->name('options.create');
 	Route::post('/products/{product}/options', 'OptionController@store')->name('options.store');
 	Route::delete('/products/{product}/options', 'OptionController@destroy')->name('options.destroy');
+	Route::get('/products/{product}/options', 'OptionController@show')->name('options.show');
+
+	
 
 	Route::get('/notauth', function () {
 	    return view('notauth');

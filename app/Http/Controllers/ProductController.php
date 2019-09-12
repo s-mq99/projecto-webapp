@@ -14,10 +14,17 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-           
-        $products = Product::paginate(10);
+        $products = Product::where('status', '=', 'Em curso')->paginate(10);
+
+        if($request->ver=='all') {
+            $products = Product::paginate(10);
+        }
+
+        if($request->has('name')){
+            $products = Product::where('name', '=', $request->name)->paginate(10);
+        }
 
         return view('products.index')->with('products',$products);
 

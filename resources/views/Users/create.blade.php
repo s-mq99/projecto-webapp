@@ -44,7 +44,7 @@
 	</select>
 	@endif
 <br>	
-<button type="submit" class="btn btn-primary">Guardar</button>
+<button type="submit" class="btn btn-primary btn-sm">Guardar</button>
 </form>
 </div>
 

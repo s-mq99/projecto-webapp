@@ -47,7 +47,7 @@
 
 	<br><br>
 
-	<button type="submit" class="btn btn-info">Guardar</button>
+	<button type="submit" class="btn btn-info btn-sm">Guardar</button>
 
 </form>
 </div>

@@ -2,25 +2,27 @@
 @section('content')
 
 <div class="container" style="max-width: 500px">
-	<h3 align="center"> NOVA OPÇÃO </h3>
+	<h3 align="center"> EDITAR OPÇÃO </h3>
 
 	
-	<form method="POST" action="{{route('options.store', $product)}}">
+	<form method="POST">
+		@method('PUT')
 		@csrf()
+
 		<div class="form-group">
 			<label for="ref">Referencia</label>
 			<input type="text" name="ref"
-				   id="ref" class="form-control">
+				   id="ref" class="form-control" value="{{$option['ref']}}">
 		</div>
 		<div class="form-group">
 			<label for="name">Nome</label>
 			<input type="text" name="name"
-				   id="name" class="form-control">
+				   id="name" class="form-control" value="{{$option['name']}}">
 		</div>
 		<div class="form-group">
 			<label for="price">Preço</label>
 			<input type="text" name="price"
-				   id="price" class="form-control">
+				   id="price" class="form-control" value="{{$option['price']}}">
 		</div>
 		<div class="custom-file">
          	<input type="file" class="custom-file-input" id="images" name="images">
@@ -30,18 +32,18 @@
       	<div class="form-group">
 			<label for="notes">Notas</label>
 			<textarea name="notes"
-				   id="notes" class="form-control"></textarea>
+				   id="notes" class="form-control">{{$option['notes']}}</textarea>
 		</div>
 
       	<div class="form-group">
 			<label for="compra">Link Compra</label>
 			<input type="text" name="compra" placeholder="Este campo é opcional"
-				   id="compra" class="form-control">
+				   id="compra" class="form-control" value="{{$option['compra']}}">
 		</div>
 			<div class="form-group">
 			<label for="info">Link Informação</label>
 			<input type="text" name="info" placeholder="Este campo é opcional"
-				   id="info" class="form-control">
+				   id="info" class="form-control"  value="{{$option['info']}}">
 		</div>
 
 

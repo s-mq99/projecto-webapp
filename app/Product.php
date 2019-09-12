@@ -18,5 +18,13 @@ class Product extends Model
     	return $this->hasMany('App\Data');
     }
 
+    public function options(){
+    	return $this->hasMany('App\Option');
+    }
+
+    public function optionsResumed(){
+      return $this->hasMany('App\Option')->where('data_id', NULL)->select(['ref', 'value', 'updated_at']);
+    }
+
 
 }

@@ -5,18 +5,16 @@
 	<div class="container">
 
 
-	  <form action="products.index.php" method="GET" role="search">
-	      {{ csrf_field() }}
-	     <div class="input-group">
-	      <input type="text" class="form-control" name="q" placeholder="Pesquisar produto" value="">
-	        <input type="submit" value="Procurar" class="btn btn-outline-info">
-	   </div>
+	  <form action="products" method="GET" class="pagination justify-content-end">
+	      <input type="text" name="name" id="idName" placeholder="Pesquisar produto" value="">
+	        <input type="submit" value="Procurar" class="btn btn-outline-info btn-sm">
 	 </form>
 
-	    <br><br>
+	    <br>
 
 		<div>
-		<a href="{{route('products.create')}}" class="btn btn-primary">Novo Produto</a>
+		<a href="{{route('products.create')}}" class="btn btn-primary btn-sm">Novo Produto</a>
+		<a href="/products/ver=all" class="btn btn-primary btn-sm" id="ver">Ver todos</a>
 		</div> <br>
 
 	<table class="table">
@@ -34,7 +32,7 @@
 				<tr>
 					<td>{{ $product['name'] }}</td>
 
-					<td></td>
+					<td>{{ count(collect($product['options'])) }}</td>
 					
 					<td>{{ $product['created_at'] }}</td>
 
@@ -60,5 +58,6 @@
 		{{ $products->links() }}
 
 	</div>
+
 
 	@endsection

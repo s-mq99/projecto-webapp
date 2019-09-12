@@ -4,7 +4,7 @@
 <div class="container">
     <h1>Painel de Administrador</h1>
 
-    	<a href="{{route('users.create')}}" class="btn btn-primary">Novo Utilizador</a>
+    	<a href="{{route('users.create')}}" class="btn btn-primary btn-sm">Novo Utilizador</a>
     	<br><br>
 
 

@@ -39,13 +39,24 @@ class OptionController extends Controller
      */
     public function store(Request $request, Product $product)
     {
+        //dd($request->all());
+
+        $i = 0;
+        foreach ($request->except('_token') as $key => $value) {
+            $i++;
+            $option = new Option;
             
-        $option = new Option();
+            if($i < 8)
+                $option->data_id = NULL;
+            else
+                $option->data_id = $key;
+            
+            $option->value = $value ?? '';
+            $option->product_id = $product->id;
+            $option->ref = $request->ref;
 
-        $option->fill($request->all());
-        $option->product_id = $product->id;
-
-        $option->save();
+            $option->save();
+        }
 
         return redirect()->route('products.show', $product);
     }
@@ -90,10 +101,10 @@ class OptionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Option $option)
-    public function destroy(Data $data)
     {
-        $product = Product::findOrFail($data->product_id);
-        $data->delete();
+        $product = Product::findOrFail($option->product_id);
+        $option->delete();
+        
         return redirect()->route('products.show', $product);
     }
 }
