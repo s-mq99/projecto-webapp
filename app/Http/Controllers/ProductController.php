@@ -18,7 +18,7 @@ class ProductController extends Controller
     {
         $products = Product::where('status', '=', 'Em curso')->paginate(10);
 
-        if($request->ver=='all') {
+        if($request->see=='all') {
             $products = Product::paginate(10);
         }
 
@@ -54,6 +54,7 @@ class ProductController extends Controller
         $product->fill($request->all());
 
         $product->save();
+        
 
        return redirect()->route('products.show', ['product'=>$product]);
 

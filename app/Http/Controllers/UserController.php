@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
+use Auth;
 
 class UserController extends Controller
 {
@@ -45,13 +46,17 @@ class UserController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
 
+        if( !is_null($request->photo) ){
+            $user->photo = $user->id . "_" . Carbon::now()->timestamp . "." . $request->file('photo')->getClientOriginalExtension();
+            $path = $request->file('photo')->storeAs('users', $user->photo, 'public');
 
-        $user->photo = $user->id . "_" . Carbon::now()->timestamp . "." . $request->file('photo')->getClientOriginalExtension();
-        $path = $request->file('photo')->storeAs('users', $user->photo, 'public');
+            $user->save();
+        }
 
-        $user->save();
-
-       return redirect()->route('users.index');
+        if(Auth::user())
+            return redirect()->route('users.index');
+        else
+            return redirect()->route('products.index');
     }
 
     /**

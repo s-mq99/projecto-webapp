@@ -80,12 +80,16 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
+               <!-- <div class="title m-b-md">
                    WHICH ONE
-                </div>
+                </div>-->
+
+                <img src="logo.png" width="500px" align="center">
+
+                <br><br><br><br>
 
                 <div class="links">
-                    <a href="http://website.projecto.local/whichone">VISITAR WEBSITE</a>
+                    <a href="http://projecto-website.local/whichone">VISITAR WEBSITE</a>
                     
                 </div>
             </div>

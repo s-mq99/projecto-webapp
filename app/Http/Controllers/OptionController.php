@@ -68,7 +68,8 @@ class OptionController extends Controller
      */
     public function show(Option $option)
     {
-        //
+        $options = Option::where('ref', $option->ref)->orderBy('id')->get();
+        return view('options.show')->with('options', $options);
     }
 
     /**
@@ -100,11 +101,16 @@ class OptionController extends Controller
      * @param  \App\Option  $option
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Option $option)
+    public function destroy(Option $option, Product $product)
     {
-        $product = Product::findOrFail($option->product_id);
-        $option->delete();
-        
-        return redirect()->route('products.show', $product);
+
+        $option = Option::where('ref', $option->ref)->get();
+
+        foreach ($option as $key => $value) {
+            $option->delete();
+        }
+
+        return view('products.show')->with('product', $product);
     }
+
 }

@@ -60,8 +60,9 @@ use Illuminate\Http\Request;
          * @return \Illuminate\Http\Response
          */
         public function show(Data $data)
-        {
-            
+         {
+
+           
         }
 
         /**
@@ -72,7 +73,7 @@ use Illuminate\Http\Request;
          */
         public function edit(Data $data)
         {
-            //
+            return view('data.edit')->with('data',$data); 
         }
 
         /**
@@ -84,7 +85,11 @@ use Illuminate\Http\Request;
          */
         public function update(Request $request, Data $data)
         {
-            //
+            $data->fill($request->all());
+
+            $data->save();
+
+        return redirect()->route('products.show',['data'=>$data]); 
         }
 
         /**

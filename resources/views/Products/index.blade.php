@@ -14,7 +14,7 @@
 
 		<div>
 		<a href="{{route('products.create')}}" class="btn btn-primary btn-sm">Novo Produto</a>
-		<a href="/products/ver=all" class="btn btn-primary btn-sm" id="ver">Ver todos</a>
+		<a href="/products?see=all" class="btn btn-primary btn-sm" id="see" value="all">Ver todos</a>
 		</div> <br>
 
 	<table class="table">
@@ -38,7 +38,7 @@
 
 					<td>{{ $product['status'] }}</td>
 					<td>
-						<a href="{{route('products.show', $product)}}" class="btn btn-outline-info btn-sm" >Ver</a>
+						<a href="{{route('products.show', $product)}}" class="btn btn-outline-info btn-sm" >Ver/Editar</a>
 					</td>
 					<td>
 						<form method="POST" 
@@ -47,7 +47,7 @@
 							@csrf()
 							<button type="submit" 
 									onclick="return confirm('Tem a certeza que pretende eliminar este produto?')"
-									class="btn btn-outline-info btn-sm" >Eliminar</button>
+									class="btn btn-outline-danger btn-sm" >Eliminar</button>
 						</form>
 					</td>
 				</tr>

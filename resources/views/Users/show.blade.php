@@ -1,8 +1,8 @@
 @extends ('layouts.app')
 @section ('content')
 
-<div class="container">
-	<h1> Editar Utilizador</h1>
+<div class="container" style="max-width: 500px">
+	<h5> EDITAR UTILIZADOR </h5>
 	<form method="POST">
 		@method('PUT')
 		@csrf()
@@ -33,7 +33,7 @@
 	
 	<label for="status"> Estado </label>
 	<select name="status">
-		<option value="Activo" selected>Activo</option>
+		<option value="Activo">Activo</option>
 		<option value="Inactivo">Inactivo</option>
 	</select>
 	
@@ -47,7 +47,7 @@
 
 	<br><br>
 
-	<button type="submit" class="btn btn-info btn-sm">Guardar</button>
+	<button type="submit" class="btn btn-primary btn-sm">Guardar</button>
 
 </form>
 </div>

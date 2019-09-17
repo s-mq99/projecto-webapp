@@ -2,7 +2,8 @@
 	@section ('content')
 
 	<div class="container">
-		<h1> Editar Produto </h1>
+		<div style="max-width: 500px">
+		<h5> EDITAR PRODUTO </h5>
 		<form method="POST">
 			@method('PUT')
 			@csrf()
@@ -26,7 +27,7 @@
 		<br>
 		</div>
 
-		<button type="submit" class="btn btn-info btn-sm">Guardar</button>
+		<button type="submit" class="btn btn-primary btn-sm">Guardar</button>
 
 
 	</form>
@@ -35,7 +36,7 @@
 	<br>
 
 
-		<h2>Ponto de dados</h2>
+		<h5> PONTOS DE DADOS </h5>
 		<table class="table">
 			<thead>
 				<tr>
@@ -63,13 +64,16 @@
 				<td>{{$data ['name']}}</td>
 				<td>{{$data ['type']}}</td>
 				<td>
+					<a href="{{route('data.edit', $data)}}" class="btn btn-outline-info btn-sm">Editar</a>
+				</td>
+				<td>
 						<form method="POST" 
 							  action="{{route('data.destroy', $data)}}">
 							@method('DELETE')
 							@csrf()
 							<button type="submit" 
 									onclick="return confirm('Tem a certeza que pretende eliminar este ponto?')"
-									class="btn btn-outline-info btn-sm" >Eliminar</button>
+									class="btn btn-outline-danger btn-sm" >Eliminar</button>
 						</form>
 				</td>
 			</tr>
@@ -77,12 +81,14 @@
 			</tbody>
 		</table>
 
-		<a href="{{route('data.create', $product)}}" class="btn btn-info btn-sm">Adicionar Ponto</a>
-		<button onclick="myFunction()" class="btn btn-info btn-sm">Mostrar Todos</button>		
+		</div>
+
+		<a href="{{route('data.create', $product)}}" class="btn btn-primary btn-sm">Adicionar Ponto</a>
+		<!--<button onclick="myFunction()" class="btn btn-outline-info btn-sm">Mostrar Todos</button>-->		
 		
 
-	<br><br>
-	<h2>Lista de Opções</h2>
+	<br><br><br>
+	<h5> LISTA DE OPÇÕES </h5>
 
 		
 		<table class="table">
@@ -98,7 +104,7 @@
 			</thead>
 			<tbody>
 
-
+				@if( sizeof($product->optionsResumed) )
 
 				<tr>
 
@@ -125,29 +131,32 @@
 					@if( $i==5)
 					<td>{{$option->updated_at}}</td>
 					<td>
-						<a href="{{route('options.create', $product)}}" class="btn btn-outline-info btn-sm" >Ver</a>
+						<a href="{{route('options.show', $option)}}" class="btn btn-outline-info btn-sm" >Ver/Editar</a>
 					</td>
 					<td>
 						<form method="POST" 
-							  action="">
+							  action="{{route('options.destroy', $option)}}">
 							@method('DELETE')
 							@csrf()
 							<button type="submit" 
 									onclick="return confirm('Tem a certeza que pretende eliminar este produto?')"
-									class="btn btn-outline-info btn-sm" >Eliminar</button>
+									class="btn btn-outline-danger btn-sm" >Eliminar</button>
 						</form>
 					</td>
 					@endif
 				@endforeach
 
 				</tr>
+
+				@endif
 		
 
 			
 			</tbody>
 	</table>
-	<a href="{{route('options.create', $product)}}" class="btn btn-info btn-sm">Adicionar Opção</a>
-
+	<a href="{{route('options.create', $product)}}" class="btn btn-primary btn-sm">Adicionar Opção</a>
+	<br><br>
+	<a href="{{route('products.index')}}" class="btn btn-outline-info btn-sm"> 🡠 </a>
 	</div>
 
 	@endsection

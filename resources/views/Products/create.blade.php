@@ -1,8 +1,9 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="container">
-	<h1> Novo Produto </h1>
+<div class="container" style="max-width: 500px">
+	<h5 align="center"> NOVO PRODUTO </h5>
+	<br>
 	<form method="POST" action="{{route('products.store')}}">
 		@csrf()
 		<div class="form-group">
@@ -24,7 +25,7 @@
 	</select>
 
 
-<br>	
+<br><br>	
 <button type="submit" class="btn btn-primary btn-sm">Guardar</button>
 </form>
 </div>

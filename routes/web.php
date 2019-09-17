@@ -29,16 +29,16 @@
 	Route::get('user/{id}', 'UserController@show');
 
 	Route::get('/products/{id}/data', 'DataController@create')->name('data.create');
-	Route::post('/products/{id}/data', 'DataController@store')->name('data.store');
+	Route::get('/products/data/{data}', 'DataController@edit')->name('data.edit');
 	Route::delete('/products/{data}/data', 'DataController@destroy')->name('data.destroy');
-
-	Route::get('/users/{id}/data', 'DataController@create')->name('data.create');
+	Route::get('/products/{data}/data', 'DataController@show')->name('data.show');
 	Route::post('/products/{id}/data', 'DataController@store')->name('data.store');
 
-	Route::get('/products/{product}/options', 'OptionController@create')->name('options.create');
+	Route::get('/options/{product}/create', 'OptionController@create')->name('options.create');
 	Route::post('/products/{product}/options', 'OptionController@store')->name('options.store');
-	Route::delete('/products/{product}/options', 'OptionController@destroy')->name('options.destroy');
-	Route::get('/products/{product}/options', 'OptionController@show')->name('options.show');
+	Route::delete('/products/{option}/destroy', 'OptionController@destroy')->name('options.destroy');
+	Route::get('/options/{option}/show', 'OptionController@show')->name('options.show');
+	
 
 	
 

@@ -2,13 +2,13 @@
 @section('content')
 
 <div class="container" style="max-width: 500px">
-	<h3 align="center"> NOVA OPÇÃO </h3>
+	<h5 align="center"> NOVA OPÇÃO </h5>
 
 	
 	<form method="POST" action="{{route('options.store', $product)}}">
 		@csrf()
 		<div class="form-group">
-			<label for="ref">Referencia</label>
+			<label for="ref">Referência</label>
 			<input type="text" name="ref"
 				   id="ref" class="form-control">
 		</div>
@@ -23,7 +23,7 @@
 				   id="price" class="form-control">
 		</div>
 		<div class="custom-file">
-         	<input type="file" class="custom-file-input" id="images" name="images">
+         	<input type="file" class="custom-file-input" id="images" name="images" style="background-color: #00ffff">
           	<label class="custom-file-label" for="images">Inserir imagens</label>
       	</div>
 
@@ -44,22 +44,20 @@
 				   id="info" class="form-control">
 		</div>
 
-
-	@foreach($product->datas as $data)	
-
+		<!--@foreach($product->datas as $data)	
 	<form method="POST" action="{{route('options.store', $product)}}">
 		@csrf()
 		<div class="form-group">
 			<label for="{{$data['name']}}">{{$data['name']}}</label>
 			<input type="text" name="{{$data['id']}}" id="{{$data['id']}}" class="form-control">
 		</div>
-
-	@endforeach
+	@endforeach-->
 
 
 <br>	
-<button type="submit" class="btn btn-primary">Guardar</button>
+<button type="submit" class="btn btn-primary btn-sm">Guardar</button>
 </form>
+
 </div>
 
 @endsection

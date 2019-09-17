@@ -23,7 +23,7 @@ class Product extends Model
     }
 
     public function optionsResumed(){
-      return $this->hasMany('App\Option')->where('data_id', NULL)->select(['ref', 'value', 'updated_at']);
+      return $this->hasMany('App\Option')->where('data_id', NULL)->orderBy('ref')->orderBy('id')->select(['ref', 'value', 'updated_at', 'id']);
     }
 
 

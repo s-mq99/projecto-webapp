@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="container">
-	<h1> Novo Utilizador </h1>
+<div class="container" style="max-width: 500px">
+	<h5> NOVO UTILIZADOR </h5>
 	<form method="POST" action="{{route('users.store')}}" enctype="multipart/form-data">
 		@csrf()
 		<div class="form-group">

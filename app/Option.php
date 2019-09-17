@@ -23,4 +23,9 @@ class Option extends Model
     	return $this->belongsTo('App\Product');
 
 	}
+
+     public function data(){
+      return $this->belongsTo('App\Data');
+
+  }
 }

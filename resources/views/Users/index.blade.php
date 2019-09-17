@@ -2,7 +2,8 @@
 
 @section('content')
 <div class="container">
-    <h1>Painel de Administrador</h1>
+    <h5>PAINEL DE ADMINISTRADOR</h5>
+    	<br>
 
     	<a href="{{route('users.create')}}" class="btn btn-primary btn-sm">Novo Utilizador</a>
     	<br><br>
@@ -17,6 +18,7 @@
 				<th>Password</th>
 				<th>Estado</th>
 				<th>Autorização</th>
+				<th colspan="2"></th>
 			</tr>
 		</thead>
 
@@ -55,7 +57,7 @@
 						@csrf()
 						<button type="submit" 
 								onclick="return confirm('Tem a certeza que pretende eliminar este utilizador?')"
-								class="btn btn-outline-info btn-sm" >Eliminar</button>
+								class="btn btn-outline-danger btn-sm" >Eliminar</button>
 					</form>
 				</td>
 
